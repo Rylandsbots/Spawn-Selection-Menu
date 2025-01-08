@@ -26,7 +26,7 @@ ensure teleport-menu
 add_ace group.teleport teleport.use allow
 
 # Add Steam IDs to group (replace with actual Steam IDs)
-add_principal identifier.steam:1100001367fa99f group.teleport
+add_principal identifier.steam:Hex-Here group.teleport
 ## Dependencies
 - mysql-async
 
