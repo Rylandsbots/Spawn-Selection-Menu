@@ -1,13 +1,13 @@
-# Cobra Modifications - Teleport Menu 🌟
+# Cobra Modifications - Teleport Menu :star2:
 
 A sleek and modern teleport menu system for FiveM servers with last location tracking and smooth UI.
 
 ## Features
-- 🎯 Preset teleport locations with emojis
-- 🎲 Random location option
-- 📍 Last location tracking
-- 💫 Smooth UI transitions
-- ⚡ Auto-opens on first spawn only
+- :dart: Preset teleport locations with emojis
+- :game_die: Random location option
+- :round_pushpin: Last location tracking
+- :dizzy: Smooth UI transitions
+- :zap: Auto-opens on first spawn only
 
 ## Installation
 1. Place in your resources folder
@@ -22,17 +22,23 @@ CREATE TABLE IF NOT EXISTS `player_last_location` (
 
 3. Add to server.cfg:
 ensure teleport-menu
+# Group Creation
+add_ace group.teleport teleport.use allow
 
+# Add Steam IDs to group (replace with actual Steam IDs)
+add_principal identifier.steam:1100001367fa99f group.teleport
 ## Dependencies
 - mysql-async
 
 ## Usage
 - /spawn - Opens teleport menu
-- ESC - Closes menu
+click the location you wish to go to !
 
 ## Support
-Discord: [Your Discord]
+Discord: [Cobra Modifications](https://discord.gg/GK4GAvaya7)
 Version: 1.0.0
 
 ## License
 © 2024 Cobra Modifications. All Rights Reserved.```
+
+
