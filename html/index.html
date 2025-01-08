@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: none;
+        }
+        
+        .menu-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 300px;
+        }
+        
+        .menu-title {
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .location-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .location-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-title">🌎 Teleport Menu</div>
+        <div id="locations"></div>
+    </div>
+    
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'openMenu') {
+                document.body.style.display = 'block';
+                const locationsDiv = document.getElementById('locations');
+                locationsDiv.innerHTML = '';
+                
+                document.querySelector('.menu-title').textContent = event.data.title;
+                
+                event.data.locations.forEach(loc => {
+                    const button = document.createElement('button');
+                    button.className = 'location-button';
+                    button.textContent = loc.label;
+                    button.onclick = () => {
+                        fetch(`https://${GetParentResourceName()}/teleport`, {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                location: loc.value
+                            })
+                        });
+                    };
+                    locationsDiv.appendChild(button);
+                });
+            }
+            if (event.data.type === 'closeMenu') {
+                document.body.style.display = 'none';
+            }
+        });
+        
+        document.onkeyup = function(event) {
+            if (event.key === 'Escape') {
+                document.body.style.display = 'none';
+                fetch(`https://${GetParentResourceName()}/closeMenu`, {
+                    method: 'POST'
+                });
+            }
+        };
+    </script>
+</body>
+</html>
